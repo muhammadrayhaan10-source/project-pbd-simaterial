@@ -9,7 +9,12 @@
 </head>
 <body class="bg-gray-100 p-8">
     <div class="max-w-6xl mx-auto bg-white shadow-md rounded-lg p-6">
-        <h1 class="text-2xl font-bold mb-6 text-gray-800">Daftar Katalog Material (SIMATERIAL)</h1>
+
+        <!-- Ganti tag <h1> lama dengan blok flex di bawah ini -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">Daftar Katalog Material (SIMATERIAL)</h1>
+            <a href="/admin/barang/create" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">+ Tambah Barang Baru</a>
+        </div>
 
         <table class="w-full border-collapse border border-gray-300">
             <thead>

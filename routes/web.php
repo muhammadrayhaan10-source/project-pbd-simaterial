@@ -22,6 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Route untuk menampilkan form tambah barang dan menyimpan data barang baru
+Route::get('/admin/barang/create', [MasterController::class, 'createBarang']);
+Route::post('/admin/barang', [MasterController::class, 'storeBarang']);
+
 // Route Master Data
 Route::get('/admin/barang', [MasterController::class, 'indexBarang']);
 Route::get('/admin/role', [MasterController::class, 'indexRole']);
