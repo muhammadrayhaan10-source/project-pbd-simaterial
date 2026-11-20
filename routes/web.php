@@ -56,4 +56,16 @@ Route::get('/admin/vendor/create', [MasterController::class, 'createVendor']);
 Route::post('/admin/vendor', [MasterController::class, 'storeVendor']);
 Route::delete('/admin/vendor/{id}', [MasterController::class, 'destroyVendor']);
 
+// Pengadaan
+Route::get('/admin/pengadaan/create', [TransactionController::class, 'createPengadaan']);
+Route::post('/admin/pengadaan', [TransactionController::class, 'storePengadaan']);
+Route::delete('/admin/pengadaan/{id}', [TransactionController::class, 'destroyPengadaan']);
+
+// Penerimaan
+Route::get('/admin/penerimaan/create', [TransactionController::class, 'createPenerimaan']);
+Route::post('/admin/penerimaan', [TransactionController::class, 'storePenerimaan']);
+
+// penjualan
+Route::get('/admin/penjualan/create', [TransactionController::class, 'createPenjualan']);
+Route::post('/admin/penjualan', [TransactionController::class, 'storePenjualan']);
 require __DIR__.'/auth.php';
