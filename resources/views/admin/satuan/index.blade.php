@@ -18,7 +18,7 @@
             </a>
         </div>
 
-        <!-- Pesan notifikasi jika berhasil simpan/hapus satuan -->
+        <!-- Pesan notifikasi jika berhasil simpan/update/hapus satuan -->
         @if(session('success'))
             <div class="bg-green-100 border border-green-400 text-green-800 px-4 py-3 rounded mb-4">
                 {{ session('success') }}
@@ -52,13 +52,19 @@
                         </span>
                     </td>
                     <td class="border border-gray-300 p-3">
-                        <form action="/admin/satuan/{{ $item->idsatuan }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus satuan ini?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm font-semibold">
-                                Hapus
-                            </button>
-                        </form>
+                        <div class="flex items-center gap-2">
+                            <a href="/admin/satuan/{{ $item->idsatuan }}/edit"
+                                class="bg-amber-500 text-white px-3 py-1 rounded hover:bg-amber-600 text-sm font-semibold">
+                                Edit
+                            </a>
+                            <form action="/admin/satuan/{{ $item->idsatuan }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus satuan ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm font-semibold">
+                                    Hapus
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @endforeach

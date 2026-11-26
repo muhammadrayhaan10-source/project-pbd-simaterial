@@ -51,15 +51,21 @@
                         </span>
                     </td>
                     <td class="border border-gray-300 p-3">
-                        <form action="/admin/vendor/{{ $item->idvendor }}" method="POST"
-                            onsubmit="return confirm('Yakin ingin menghapus vendor ini?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm font-semibold">
-                                Hapus
-                            </button>
-                        </form>
+                        <div class="flex items-center gap-2">
+                            <a href="/admin/vendor/{{ $item->idvendor }}/edit"
+                                class="bg-amber-500 text-white px-3 py-1 rounded hover:bg-amber-600 text-sm font-semibold">
+                                Edit
+                            </a>
+                            <form action="/admin/vendor/{{ $item->idvendor }}" method="POST"
+                                onsubmit="return confirm('Yakin ingin menghapus vendor ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm font-semibold">
+                                    Hapus
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @endforeach

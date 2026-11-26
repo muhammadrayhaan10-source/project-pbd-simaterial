@@ -15,7 +15,7 @@
             <a href="/admin/barang/create" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">+ Tambah Barang Baru</a>
         </div>
 
-        <!-- Pesan notifikasi jika berhasil simpan/hapus barang -->
+        <!-- Pesan notifikasi jika berhasil simpan/update/hapus barang -->
         @if(session('success'))
             <div class="bg-green-100 border border-green-400 text-green-800 px-4 py-3 rounded mb-4">
                 {{ session('success') }}
@@ -57,13 +57,19 @@
                         </span>
                     </td>
                     <td class="border border-gray-300 p-3">
-                        <form action="/admin/barang/{{ $item->idbarang }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus barang ini?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm font-semibold">
-                                Hapus
-                            </button>
-                        </form>
+                        <div class="flex items-center gap-2">
+                            <a href="/admin/barang/{{ $item->idbarang }}/edit"
+                                class="bg-amber-500 text-white px-3 py-1 rounded hover:bg-amber-600 text-sm font-semibold">
+                                Edit
+                            </a>
+                            <form action="/admin/barang/{{ $item->idbarang }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus barang ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm font-semibold">
+                                    Hapus
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @endforeach

@@ -39,6 +39,7 @@
                     <th class="border border-gray-300 p-3">Timestamp</th>
                     <th class="border border-gray-300 p-3">Purchasing User</th>
                     <th class="border border-gray-300 p-3">Vendor</th>
+                    <th class="border border-gray-300 p-3">Nama Barang (Qty)</th>
                     <th class="border border-gray-300 p-3">Subtotal</th>
                     <th class="border border-gray-300 p-3">PPN</th>
                     <th class="border border-gray-300 p-3">Total Nilai</th>
@@ -49,11 +50,17 @@
             </thead>
             <tbody>
                 @foreach($pengadaans as $item)
+                @php
+                    $daftarBarang = $namaBarangPerPengadaan[$item->idpengadaan] ?? [];
+                @endphp
                 <tr class="hover:bg-gray-50">
                     <td class="border border-gray-300 p-3">{{ $item->idpengadaan }}</td>
                     <td class="border border-gray-300 p-3">{{ $item->timestamp }}</td>
                     <td class="border border-gray-300 p-3">{{ $item->username }}</td>
                     <td class="border border-gray-300 p-3 font-semibold">{{ $item->nama_vendor }}</td>
+                    <td class="border border-gray-300 p-3">
+                        {{ !empty($daftarBarang) ? implode(', ', $daftarBarang) : '-' }}
+                    </td>
                     <td class="border border-gray-300 p-3">Rp {{ number_format($item->subtotal_nilai, 0, ',', '.') }}</td>
                     <td class="border border-gray-300 p-3">Rp {{ number_format($item->ppn, 0, ',', '.') }}</td>
                     <td class="border border-gray-300 p-3 font-bold text-blue-600">Rp {{ number_format($item->total_nilai, 0, ',', '.') }}</td>
@@ -64,16 +71,16 @@
                     </td>
                     <!-- 3b. Tombol Hapus di setiap baris -->
                     <td class="border border-gray-300 p-3">
-    <form action="/admin/pengadaan/{{ $item->idpengadaan }}" method="POST"
-        onsubmit="return confirm('Yakin ingin membatalkan pengadaan ini?')">
-        @csrf
-        @method('DELETE')
-        <button type="submit"
-            class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm font-semibold">
-            Batalkan
-        </button>
-    </form>
-</td>
+                        <form action="/admin/pengadaan/{{ $item->idpengadaan }}" method="POST"
+                            onsubmit="return confirm('Yakin ingin membatalkan pengadaan ini?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm font-semibold">
+                                Batalkan
+                            </button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

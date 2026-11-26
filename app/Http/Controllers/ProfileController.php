@@ -11,6 +11,10 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    // =========================================================================
+    // 1. TAMPILAN FORM PROFIL
+    // =========================================================================
+
     /**
      * Display the user's profile form.
      */
@@ -20,6 +24,10 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+
+    // =========================================================================
+    // 2. PERBARUI DATA PROFIL
+    // =========================================================================
 
     /**
      * Update the user's profile information.
@@ -36,6 +44,10 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
+
+    // =========================================================================
+    // 3. HAPUS AKUN PENGGUNA
+    // =========================================================================
 
     /**
      * Delete the user's account.
